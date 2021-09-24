@@ -1,30 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cars</title>
 </head>
+
 <body>
-<div class="container" th:with="intList = ${ {1, 2, 3, 4, 5} }">
-    <div class="row mt-4 mb-4">
-        Вывести
-        <a th:each="c : ${intList}" th:href="@{/cars(count=${c})}" th:text="|&nbsp;${c}&nbsp;|"/>
-        <a th:href="@{/cars}" th:text="Все"/>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row align-items-center">
-        <div th:each="car : ${cars}" class="card mb-2 mr-2">
-            <div class="card-header" th:text="${car.getModel()}"/>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" th:text="|Серия: ${car.getSeries()}|"/>
-                <li class="list-group-item" th:text="|Комплектация: ${car.getComplect()}|"/>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <table>
+        <tr th:each="car, state : ${autos}"
+            th:classappend="${state.odd}">
+            <td th:utext="${car.model}">Model</td>
+            <td th:utext="${car.series}">Series</td>
+            <td th:utext="${car.complect}">Complect</td>
+        </tr>
+    </table>
 </body>
 </html>
